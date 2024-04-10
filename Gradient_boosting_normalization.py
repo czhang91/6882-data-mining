@@ -11,13 +11,13 @@ import matplotlib.pyplot as plt
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
-X = data.drop('67321', axis=1).iloc[:-1]
+X = data.drop('542236', axis=1).iloc[:-1]
 scaler = MinMaxScaler()
 X = scaler.fit_transform(X)
 
-Y = data[:]['67321'].iloc[1:]
-X_train = X.iloc[:-36]  # 36 is the size of test sample#
-X_test = X.iloc[-36:]
+Y = data[:]['542236'].iloc[1:]
+X_train = X[:-36]  # 36 is the size of test sample#
+X_test = X[-36:]
 Y_train = Y.iloc[:-36]
 Y_test = Y.iloc[-36:]
 

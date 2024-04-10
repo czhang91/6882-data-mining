@@ -1,4 +1,5 @@
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
 
 # Load the dataset
 data_path = 'Sub_Oil_VLCC_Monthly.csv'

@@ -1,34 +1,30 @@
 import pandas as pd
+from sklearn.linear_model import Lasso
 
-import matplotlib
-
-from sklearn.tree import DecisionTreeRegressor
-
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-
-# step 1 data import
+# Step 1 data preparation
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
-# step 2 data preparation
 X = data.drop('541982', axis=1).iloc[:-1]
 Y = data[:]['541982'].iloc[1:]
+
 X_train = X.iloc[:-36]  # 36 is the size of test sample#
 X_test = X.iloc[-36:]
 Y_train = Y.iloc[:-36]
 Y_test = Y.iloc[-36:]
 
-# step 3 define model and parameter
-decision_tree_regressor = DecisionTreeRegressor(max_depth=5)
+# Step 2 definition of model
+lasso = Lasso(alpha=1.0)
 
-#step 4 Fit the model to the training data
-decision_tree_regressor.fit(X_train, Y_train)
+# Step 3 Fit the model to our training data
+lasso.fit(X_train, Y_train)
 
-#step 5 predict data
-Y_pred = decision_tree_regressor.predict(X_test)
+print("Coefficients:", lasso.coef_)
 
-#step 6 performance evaluation
+# Step 4 Predict using the test set
+Y_pred = lasso.predict(X_test)
+
+# Step 5 Evaluate the model
 for item in Y_pred:
     print(item)
 print("________")
