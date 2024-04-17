@@ -7,9 +7,9 @@ from sklearn.preprocessing import MinMaxScaler
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
-X = data.drop('541982', axis=1).iloc[:-1]
-Y = data[:]['541982'].iloc[1:]
-
+X = data.iloc[:-1]
+Y = data[:]['549295'].iloc[1:]
+# Normalization
 scaler = MinMaxScaler()
 print(X)
 X = scaler.fit_transform(X)

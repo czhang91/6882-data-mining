@@ -2,18 +2,16 @@ import pandas as pd
 
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-import matplotlib
-
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
 
-matplotlib.use('TkAgg')
+
 
 # Step 1 data preparation
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
-X = data.drop('541982', axis=1).iloc[:-1]
-Y = data[:]['541982'].iloc[1:]
+X = data.iloc[:-1]
+Y = data[:]['549295'].iloc[1:]
 scaler = MinMaxScaler()
 X = scaler.fit_transform(X)
 X_train = X[:-36]

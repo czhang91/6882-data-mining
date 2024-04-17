@@ -2,17 +2,14 @@ import pandas as pd
 
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-import matplotlib
-from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
+from sklearn.preprocessing import PolynomialFeatures
 
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
-X = data.drop('67321', axis=1).iloc[:-1]
-Y = data[:]['67321'].iloc[1:]
+X = data.iloc[:-1]
+Y = data[:]['549295'].iloc[1:]
 
 
 X_train = X.iloc[:-36]  # 36 is the size of test sample#
@@ -37,12 +34,3 @@ for i, item in enumerate(Y_test):
     print(100 * (1 - abs(item - y_pred[i]) / item))
 accuracy = 100 * (1 - abs((Y_test - y_pred) / Y_test))
 print(accuracy.mean())
-
-# l = plt.scatter(Y_test, y_pred, color='red', marker='o')
-# plt.title('Prediction results of Polynomial Regression')
-# plt.legend(handles=[l], labels=["Predict values"])
-# line_start = min(Y_test.min(), y_pred.min())
-# line_end = max(Y_test.max(), y_pred.max())
-#
-# plt.plot([line_start, line_end], [line_start, line_end])
-# plt.show()

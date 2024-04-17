@@ -6,24 +6,24 @@ from sklearn.preprocessing import MinMaxScaler
 # Step 1 data preparation
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
+
+X = data
+Y = data[:]['542236']
+
 # Set lag=1
 lag = 2
-X = data.drop('549295', axis=1)
-
-Y = data[:]['549295']
-
 lagged_X = X.shift(lag-1)
+
 X = X.shift(lag)
 Y = Y.shift(-lag)
 
-X = X + lagged_X
+X = pd.concat([X, lagged_X], axis=1)
 X.dropna(inplace=True)
 Y.dropna(inplace=True)
 
 scaler = MinMaxScaler()
-
-print(X)
 X = scaler.fit_transform(X)
+
 X_train = X[:-36]
 X_test = X[-36:]
 Y_train = Y[:-36]
