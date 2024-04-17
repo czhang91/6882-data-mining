@@ -1,10 +1,8 @@
 import pandas as pd
-import matplotlib
+
 
 from sklearn.tree import DecisionTreeRegressor
 
-matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 
 # step 1 data import
 data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
@@ -23,6 +21,7 @@ decision_tree_regressor = DecisionTreeRegressor(max_depth=5)
 
 #step 4 Fit the model to the training data
 decision_tree_regressor.fit(X_train, Y_train)
+
 
 #step 5 predict data
 Y_pred = decision_tree_regressor.predict(X_test)
