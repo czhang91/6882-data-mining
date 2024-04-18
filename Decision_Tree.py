@@ -10,7 +10,7 @@ data = data.drop(data.columns[0], axis=1)
 
 # step 2 data preparation
 X = data.iloc[:-1]
-Y = data[:]['549295'].iloc[1:]
+Y = data[:]['67321'].iloc[1:]
 X_train = X.iloc[:-36]  # 36 is the size of test sample#
 X_test = X.iloc[-36:]
 Y_train = Y.iloc[:-36]

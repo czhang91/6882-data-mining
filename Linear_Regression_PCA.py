@@ -8,10 +8,12 @@ data = pd.read_csv("Sub_Oil_VLCC_Monthly.csv")
 data = data.drop(data.columns[0], axis=1)
 
 X = data.iloc[:-1]
-
+pca = PCA(n_components=18)
+principal_components = pca.fit_transform(X)
+X = pd.DataFrame(data=principal_components)
 # scaler = MinMaxScaler()
 # X = scaler.fit_transform(X)
-Y = data[:]['549295'].iloc[1:]
+Y = data[:]['41108'].iloc[1:]
 X_train = X.iloc[:-36]  # 36 is the size of test sample#
 X_test = X.iloc[-36:]
 Y_train = Y.iloc[:-36]

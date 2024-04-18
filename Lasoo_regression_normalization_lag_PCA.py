@@ -10,7 +10,7 @@ data = data.drop(data.columns[0], axis=1)
 # Set lag=1
 lag = 2
 X = data
-Y = data[:]['549295']
+Y = data[:]['541982']
 
 lagged_X = X.shift(lag-1)
 X = X.shift(lag)
@@ -26,7 +26,7 @@ print(X)
 X = scaler.fit_transform(X)
 
 # PCA after normalization
-pca = PCA(n_components=7)
+pca = PCA(n_components=25)
 principal_components = pca.fit_transform(X)
 X = pd.DataFrame(data=principal_components)
 
